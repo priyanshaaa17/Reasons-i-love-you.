@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reasons I Love You 🤍</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(180deg, #fff5f8, #fde6ee);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #444;
+    }
+
+    .container {
+      text-align: center;
+      padding: 30px 20px;
+      max-width: 420px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 24px;
+    }
+
+    /* JAR */
+    .jar-wrapper {
+      position: relative;
+      width: 240px;
+      height: 360px;
+      margin: 0 auto 25px;
+      cursor: pointer;
+    }
+
+    .lid {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 170px;
+      height: 38px;
+      background: #d7b26a;
+      border-radius: 10px;
+      box-shadow: inset 0 -4px 0 rgba(0,0,0,0.15);
+      z-index: 3;
+    }
+
+    .string {
+      position: absolute;
+      top: 38px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 14px;
+      border: 2px solid #c89f5b;
+      border-top: none;
+      border-radius: 0 0 20px 20px;
+      z-index: 2;
+    }
+
+    .jar {
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 220px;
+      height: 280px;
+      border: 3px solid #f3b6c8;
+      border-radius: 30px 30px 40px 40px;
+      background: rgba(255,255,255,0.65);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    /* CHITS INSIDE JAR */
+    .chits {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 170px;
+      height: 210px;
+    }
+
+    .chit {
+      position: absolute;
+      width: 44px;
+      height: 26px;
+      background: #fff;
+      border-radius: 4px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+      transform: rotate(var(--r));
+    }
+
+    /* FLYING CHIT */
+    .flying {
+      position: absolute;
+      left: 50%;
+      bottom: 90px;
+      transform: translateX(-50%);
+      background: #fff;
+      padding: 18px 16px;
+      border-radius: 14px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+      font-size: 15px;
+      line-height: 1.5;
+      opacity: 0;
+      transition: all 0.5s ease;
+      max-width: 260px;
+      z-index: 5;
+    }
+
+    .flying.show {
+      opacity: 1;
+      transform: translate(-50%, -120px);
+    }
+
+    footer {
+      margin-top: 18px;
+      font-size: 12px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Reasons I Love You 🤍</h1>
+    <p>click the jar, take one.</p>
+
+    <div class="jar-wrapper" onclick="drawReason()">
+      <div class="lid"></div>
+      <div class="string"></div>
+      <div class="jar">
+        <div class="chits">
+          <div class="chit" style="--r:-12deg; top:170px; left:10px"></div>
+          <div class="chit" style="--r:8deg; top:150px; left:60px"></div>
+          <div class="chit" style="--r:-5deg; top:130px; left:120px"></div>
+          <div class="chit" style="--r:10deg; top:110px; left:30px"></div>
+          <div class="chit" style="--r:-8deg; top:90px; left:90px"></div>
+          <div class="chit" style="--r:6deg; top:70px; left:50px"></div>
+          <div class="chit" style="--r:-4deg; top:50px; left:110px"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="note" class="flying"></div>
+    <footer>made with love</footer>
+  </div>
+
+  <script>
+    const reasons = [
+      "you always understand me.",
+      "you take my side — always.",
+      "you make cute playlists for me.",
+      "you loved me even when i didn’t.",
+      "you always calm me down.",
+      "you send me cute reels.",
+      "you make me feel comfortable and loved.",
+      "you defend my name when i’m not there.",
+      "you send me chocolates for no reason.",
+      "you listen to my yapping.",
+      "you support me in everything.",
+      "you feel like comfort in chaos.",
+      "you’re always there when i need you.",
+      "you write poetry for me.",
+      "you never gave up on me.",
+      "you always make me laugh.",
+      "you say sorry even when you’re not wrong.",
+      "you remember every little thing.",
+      "you remember small moments — like when i looked at you.",
+      "you tell your family about me.",
+      "you never argue back.",
+      "you want to meet me.",
+      "you’re very kind.",
+      "you’re so funny.",
+      "you tell me what you’re doing without me asking.",
+      "you always consider my feelings.",
+      "you call me cute nicknames.",
+      "you’d do anything for me — even be around my dog.",
+      "you make me believe in love.",
+      "you give the best compliments.",
+      "you never get tired of me.",
+      "you want a future with me.",
+      "you love me the way i want to be loved.",
+      "we can talk about anything.",
+      "i smile the most around you.",
+      "you feel like home.",
+      "with everyone in the world, i’d still choose you.",
+      "you are my favorite person.",
+      "you are my always.",
+      "you make life softer.",
+      "you make ordinary days better.",
+      "you make me feel safe.",
+      "you make me feel seen.",
+      "you are my best friend.",
+      "you are my love.",
+      "it’s always you."
+    ];
+
+    let remaining = [...reasons];
+
+    function drawReason() {
+      if (remaining.length === 0) remaining = [...reasons];
+      const i = Math.floor(Math.random() * remaining.length);
+      const text = remaining.splice(i, 1)[0];
+
+      const note = document.getElementById('note');
+      note.classList.remove('show');
+
+      setTimeout(() => {
+        note.textContent = text;
+        note.classList.add('show');
+      }, 100);
+    }
+  </script>
+</body>
+</html>
